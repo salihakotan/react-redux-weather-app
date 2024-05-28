@@ -13,7 +13,7 @@ function WeatherCards() {
 
   useEffect(() => {
     if (status === "idle") {
-      dispatch(getWeatherData("Kestel"));
+      dispatch(getWeatherData("Bursa"));
     }
   }, [dispatch, status]);
 
@@ -39,19 +39,24 @@ function WeatherCards() {
       <div className="cardsArea">
        
         
-        {forecast.map((item) => (
-            <div className="card">
-                Tarih: {item.date} <br/>
+        {forecast.map((item,index) => (
+            
+            <div className={`card ${index === 0 ? "todayCard" : ""}`}>
+
+            <p className="conditionText"> {item.day.condition.text}</p> <br/>
+                <img className="weatherImage" src={`${item.day.condition.icon}`} alt="dayimage"/> 
+
+                <br/>
+                
 
                 Wind: {item.day.maxwind_kph} kph <br/>
                 Precip: {item.day.totalprecip_mm} mm <br/>
 
-                ortalama sıcaklık: {item.day.avgtemp_c} <br/>
-                min sıcaklık: {item.day.mintemp_c}
-                max sıcaklık: {item.day.maxtemp_c}
+                <p className="temperatureText">{item.day.avgtemp_c}</p> <br/>
+                min c: {item.day.mintemp_c}
+                max c{item.day.maxtemp_c}
 
-                Durum: {item.day.condition.text} <br/>
-                Görsel: <img src={`${item.day.condition.icon}`} alt="dayimage"/>
+                {item.date} 
             </div>
         ))}
       </div>

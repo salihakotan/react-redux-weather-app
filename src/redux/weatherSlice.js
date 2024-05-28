@@ -9,6 +9,11 @@ export const getWeatherData = createAsyncThunk("weather/getWeatherData", async(c
 })
 
 
+export const getCities = createAsyncThunk("weather/getCities", async()=> {
+    const res = await axios(`${process.env.REACT_APP_API_BASE_ENDPOINT}/items`)
+    console.log("res.data: ",res.data)
+    return await res.data
+})
 
 export const weatherSlice = createSlice({
     name:"weather",
@@ -16,8 +21,17 @@ export const weatherSlice = createSlice({
         forecast:[],
         location:[],
         status:"idle",
+        city:{
+            name:"Bursa",
+            items:[],
+            status:"idle"
+        }
     },
-    reducers:{},
+    reducers:{
+        setCity: (state,action) => {
+            state.city.name = action.payload
+        }
+    },
     extraReducers:builder => {
         builder
         .addCase(getWeatherData.pending, (state,action)=> {
@@ -34,11 +48,31 @@ export const weatherSlice = createSlice({
         .addCase(getWeatherData.rejected, (state,action)=> {
             state.status = "failed"
         })
+
+
+        .addCase(getCities.pending, (state,action)=> {
+            state.city.status = "loading"
+            console.log("city loading")
+        })
+        .addCase(getCities.fulfilled, (state,action)=> {
+            state.city.status = "succeeded"
+            console.log("city succeeded")
+
+            
+            state.city.items = action.payload
+            console.log("cities payload",action.payload)
+        }) 
+        .addCase(getCities.rejected, (state,action)=> {
+            state.city.status = "failed"
+            console.log("failed", action.error.message)
+
+        })
     }
    
 
 })
 
 
+export const {setCity} = weatherSlice.actions
 
 export default weatherSlice.reducer
