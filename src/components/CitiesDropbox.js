@@ -38,8 +38,8 @@ function CitiesDropbox() {
   return (
     <div>
         <select value={city} name='cities' onChange={(e)=> handleChange(e.target.value)}>
-            {cities.map((city) => (
-                <option value={city.name}>{city.name}</option>
+            {cities.map((city,index) => (
+                <option key={index} value={city.name}>{city.name}</option>
             ))}
         </select>
     </div>

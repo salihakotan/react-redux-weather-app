@@ -11,7 +11,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 90%;
+  width: 95%;
   margin: auto;
 }
 
@@ -21,7 +21,7 @@ body {
   padding: 10px;
   display: grid;
   grid-template-columns: repeat(7,1fr);
-  gap: 1em;
+  gap: 0.3em;
 }
 
 
@@ -45,7 +45,7 @@ body {
 
 select {
   padding: 10px;
-  margin-top: 40px;
+  margin-top: 70px;
 }
 
 

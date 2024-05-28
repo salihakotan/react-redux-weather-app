@@ -41,7 +41,7 @@ function WeatherCards() {
         
         {forecast.map((item,index) => (
             
-            <div className={`card ${index === 0 ? "todayCard" : ""}`}>
+            <div key={index} className={`card ${index === 0 ? "todayCard" : ""}`}>
 
             <p className="conditionText"> {item.day.condition.text}</p> <br/>
                 <img className="weatherImage" src={`${item.day.condition.icon}`} alt="dayimage"/> 
@@ -53,8 +53,8 @@ function WeatherCards() {
                 Precip: {item.day.totalprecip_mm} mm <br/>
 
                 <p className="temperatureText">{item.day.avgtemp_c}</p> <br/>
-                min c: {item.day.mintemp_c}
-                max c{item.day.maxtemp_c}
+                min c: {item.day.mintemp_c}<br/>
+                max c{item.day.maxtemp_c}<br/>
 
                 {item.date} 
             </div>
