@@ -2,7 +2,7 @@
 
 This project assignment has been prepared for the 'Kodluyoruz' React Redux course. It is a sample weather app.
 
-**DEMO:**
+**DEMO:** https://sk-react-redux-weather-app.netlify.app/
 
 ---
 
